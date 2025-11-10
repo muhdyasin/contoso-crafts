@@ -61,7 +61,7 @@ Contoso Crafts/
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/<your-username>/ContosoCrafts.git
+   git clone https://github.com/muhdyasin/ContosoCrafts.git
 
 2. **Open the project** in Visual Studio or VS Code.
 
