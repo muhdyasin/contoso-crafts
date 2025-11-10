@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassesLibrary", "ClassesLi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankingTests", "BankingTests\BankingTests.csproj", "{360D902A-1351-4051-B6B4-A75514664301}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContosoCrafts.WebSite", "Contoso Crafts\ContosoCrafts.WebSite.csproj", "{F3B0A6D3-7F74-4A86-A467-B44175B7EE6B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContosoCrafts.WebSite", "Contoso_Crafts\ContosoCrafts.WebSite.csproj", "{F3B0A6D3-7F74-4A86-A467-B44175B7EE6B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
