@@ -2,14 +2,16 @@
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 WORKDIR /src
 
-# Copy everything and restore
+# Copy everything
 COPY . .
-RUN dotnet restore "Contoso_Crafts.csproj"
-RUN dotnet publish "Contoso_Crafts.csproj" -c Release -o /app/publish
+
+# Restore and publish using the correct project path
+RUN dotnet restore "Contoso_Crafts/ContosoCrafts.WebSite.csproj"
+RUN dotnet publish "Contoso_Crafts/ContosoCrafts.WebSite.csproj" -c Release -o /app/publish
 
 # Stage 2: Runtime
 FROM mcr.microsoft.com/dotnet/aspnet:9.0
 WORKDIR /app
 COPY --from=build /app/publish .
 EXPOSE 80
-ENTRYPOINT ["dotnet", "Contoso_Crafts.dll"]
+ENTRYPOINT ["dotnet", "ContosoCrafts.WebSite.dll"]
