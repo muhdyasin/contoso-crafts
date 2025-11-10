@@ -53,7 +53,7 @@ Contoso Crafts/
 │   ├── lib/
 │   └── data/
 │       └── Products.json
-
+```
 
 ---
 
