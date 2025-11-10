@@ -37,8 +37,7 @@ The project was developed as part of learning **C#**, **ASP.NET Core**, **Blazor
 
 
 
-## 📁 Project Structure
-
+``` ## 📁 Project Structure
 Contoso Crafts/
 │
 ├── Contoso_Crafts.csproj
@@ -49,12 +48,11 @@ Contoso Crafts/
 ├── Pages/
 ├── Services/
 ├── wwwroot/
-│ ├── css/
-│ ├── js/
-│ ├── lib/
-│ └── data/
-│ └── Products.json
-
+│   ├── css/
+│   ├── js/
+│   ├── lib/
+│   └── data/
+│       └── Products.json
 
 
 ---
