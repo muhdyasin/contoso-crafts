@@ -1,0 +1,125 @@
+﻿@using Microsoft.AspNetCore.Components.Web
+@using Contoso_Crafts.Models
+@using ContosoCrafts.WebSite.Services
+@inject JsonFileProductService ProductService
+@inject IJSRuntime JS
+@using Microsoft.JSInterop
+
+
+<div class="container">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        @foreach (var product in ProductService.GetProducts())
+        {
+            <div class="col">
+                <div class="card h-100 shadow-sm border-0">
+                    <img src="@product.Image"
+                         class="card-img-top"
+                         alt="@product.Title" />
+                    <div class="card-body text-center d-flex align-items-center justify-content-center">
+                        <h6 class="card-title mb-0">@product.Title</h6>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">
+                            <button @onclick="() => SelectProduct(product.Id)" class="btn btn-primary">
+                                More Info
+                            </button>
+                        </small>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+@if (selectedProduct != null)
+{
+    <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="productTitle">@selectedProduct.Title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body text-center">
+                    <img src="@selectedProduct.Image" class="img-fluid rounded mb-3" alt="@selectedProduct.Title" />
+                    <p>@selectedProduct.Description</p>
+                </div>
+
+                <div class="modal-footer">
+                    @if (voteCount == 0)
+                    {
+                        <span>Be the first to vote!</span>
+                    }
+                    else
+                    {
+                        <span>@voteCount @voteLabel</span>
+                    }
+
+                    @for (int i = 0; i < 6; i++)
+                    {
+                        var currentStar = i;
+                        if (i <= currentRating)
+                        {
+                            <span class="fa fa-star checked" @onclick="() => SubmitRating(currentStar)"></span>
+                        }
+                        else
+                        {
+                            <span class="fa fa-star" @onclick="() => SubmitRating(currentStar)"></span>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+@code {
+    Product selectedProduct;
+    string selectedProductId;
+
+    async Task SelectProduct(string productId, bool showModal=true)
+    {
+        selectedProductId = productId;
+        selectedProduct = ProductService.GetProducts().First(x => x.Id == productId);
+
+        if (showModal)
+        {
+            await JS.InvokeVoidAsync("showProductModal");
+        }
+
+        GetCurrentRating();
+    }
+
+    int currentRating = 0;
+    int voteCount = 0;
+    string voteLabel;
+
+    void GetCurrentRating()
+    {
+        if (selectedProduct.Ratings == null)
+        {
+            currentRating = 0;
+            voteCount = 0;
+        }
+        else
+        {
+            voteCount = selectedProduct.Ratings.Count();
+            voteLabel = voteCount > 1 ? "Votes" : "Vote";
+            currentRating = selectedProduct.Ratings.Sum() / voteCount;
+        }
+
+        System.Console.WriteLine($"Current rating for {selectedProduct.Id}: {currentRating}");
+    }
+
+    async Task SubmitRating(int rating)
+    {
+        System.Console.WriteLine($"Rating received for {selectedProduct.Id}: {rating}");
+        ProductService.AddRating(selectedProductId, rating);
+        await SelectProduct(selectedProductId, showModal: false);
+    }
+}
