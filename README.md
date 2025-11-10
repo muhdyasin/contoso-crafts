@@ -89,4 +89,6 @@ Contoso Crafts/
 This project is licensed under the MIT License — see the LICENSE
  file for details.
 
- 
+💡 Acknowledgments
+
+This project is based on the Microsoft Learn Blazor + ASP.NET Core tutorials, extended with additional features like modals and rating logic.
