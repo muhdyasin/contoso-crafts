@@ -36,8 +36,8 @@ The project was developed as part of learning **C#**, **ASP.NET Core**, **Blazor
 | **Version Control** | Git & GitHub |
 
 
-
-``` ## 📁 Project Structure
+## 📁 Project Structure
+``` 
 Contoso Crafts/
 │
 ├── Contoso_Crafts.csproj
