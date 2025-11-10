@@ -35,7 +35,7 @@ The project was developed as part of learning **C#**, **ASP.NET Core**, **Blazor
 | **Data** | JSON file (Product Data Source) |
 | **Version Control** | Git & GitHub |
 
----
+
 
 ## 📁 Project Structure
 
@@ -51,8 +51,9 @@ Contoso Crafts/
 ├── wwwroot/
 │ ├── css/
 │ ├── js/
-│ └── images/
-└── Products.json
+│ ├── lib/
+│ └── data/
+│ └── Products.json
 
 
 
@@ -70,10 +71,9 @@ Contoso Crafts/
 
 4. Navigate to: https://localhost:5001
 
+ 
 
-   
-
-🧩 Future Improvements
+## 🧩 Future Improvements
 
 - Add product filtering or search functionality.
 
@@ -84,11 +84,11 @@ Contoso Crafts/
 - Deploy using Render, Azure, or another cloud provider.
 
 
-📜 License
+## 📜 License
 
 This project is licensed under the MIT License — see the LICENSE
  file for details.
 
-💡 Acknowledgments
+## 💡 Acknowledgments
 
 This project is based on the Microsoft Learn Blazor + ASP.NET Core tutorials, extended with additional features like modals and rating logic.
